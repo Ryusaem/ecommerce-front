@@ -1,3 +1,4 @@
+import Button from "@/components/Button";
 import Center from "@/components/Center";
 import Header from "@/components/Header";
 import styled from "styled-components";
@@ -22,7 +23,24 @@ export default function CartPage() {
       <Center>
         <ColumnWrapper>
           <Box>1</Box>
-          <Box>2</Box>
+          <Box>
+            <h2>Order Information</h2>
+            <input
+              type="text"
+              placeholder="Address 1"
+            />
+            <input
+              type="text"
+              placeholder="Address 2"
+            />
+
+            <Button
+              black
+              block
+            >
+              Continue to payment
+            </Button>
+          </Box>
         </ColumnWrapper>
       </Center>
     </>
