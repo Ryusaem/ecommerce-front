@@ -68,6 +68,18 @@ export default function CartPage() {
     removeProduct(id);
   }
 
+  // we calculate the total price of the products in the cart
+  let total = 0;
+
+  // we loop through the cartProducts state and for each id we find the product in the products state and add the price to the total.
+  // productId is the id of the product in the cart
+  // cartProducts is the state that has the ids of the products in the cart
+  for (const productId of cartProducts) {
+    const price =
+      products.find((product) => product._id === productId)?.price || 0;
+    total += price;
+  }
+
   return (
     <>
       <Header />
@@ -123,6 +135,11 @@ export default function CartPage() {
                       </td>
                     </tr>
                   ))}
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td>${total}</td>
+                  </tr>
                 </tbody>
               </Table>
             )}
