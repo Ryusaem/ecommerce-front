@@ -39,9 +39,13 @@ const Box = styled.div`
   padding: 30px;
 `;
 
+const QuantityLabel = styled.span`
+  padding: 0 3px;
+`;
+
 export default function CartPage() {
   // cartProducts will have only the ids of the products in the cart. We will use this state to make a post request to the api
-  const { cartProducts } = useContext(CartContext);
+  const { cartProducts, addProduct, removeProduct } = useContext(CartContext);
 
   // products will have the products from the api
   const [products, setProducts] = useState([]);
@@ -55,6 +59,14 @@ export default function CartPage() {
       });
     }
   }, [cartProducts]);
+
+  function moreOfThisProduct(id) {
+    addProduct(id);
+  }
+
+  function lessOfThisProduct(id) {
+    removeProduct(id);
+  }
 
   return (
     <>
@@ -91,7 +103,18 @@ export default function CartPage() {
                         {product.title}
                       </ProductInfoCell>
                       <td>
-                        {cartProducts.filter((id) => id === product._id).length}
+                        <Button onClick={() => lessOfThisProduct(product._id)}>
+                          -
+                        </Button>
+                        <QuantityLabel>
+                          {
+                            cartProducts.filter((id) => id === product._id)
+                              .length
+                          }
+                        </QuantityLabel>
+                        <Button onClick={() => moreOfThisProduct(product._id)}>
+                          +
+                        </Button>
                       </td>
                       <td>
                         $

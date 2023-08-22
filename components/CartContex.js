@@ -28,9 +28,26 @@ export function CartContexProvider({ children }) {
   function addProduct(productId) {
     setCartProducts((prev) => [...prev, productId]);
   }
+
+  // we can use this function to remove a product from the cart
+  function removeProduct(productId) {
+    setCartProducts((prev) => {
+      // we use indexOf to find the position of the product in the array
+      const pos = prev.indexOf(productId);
+
+      // why -1? because if the product is not in the cart the indexOf method will return -1
+      if (pos !== -1) {
+        // we use filter to remove the product from the array. it will return a new array without the product
+        return prev.filter((value, index) => index !== pos);
+      }
+      return prev;
+    });
+  }
   return (
     // cartcontext.provider is a component that wraps all the components that need access to the cart
-    <CartContext.Provider value={{ cartProducts, setCartProducts, addProduct }}>
+    <CartContext.Provider
+      value={{ cartProducts, setCartProducts, addProduct, removeProduct }}
+    >
       {children}
     </CartContext.Provider>
   );
