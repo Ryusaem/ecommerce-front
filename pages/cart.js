@@ -44,6 +44,7 @@ const QuantityLabel = styled.span`
   padding: 0 3px;
 `;
 
+// CityHolder is a div that holds the city and postal code inputs (flex)
 const CityHolder = styled.div`
   display: flex;
   gap: 5px;
@@ -56,6 +57,14 @@ export default function CartPage() {
   // products will have the products from the api
   const [products, setProducts] = useState([]);
 
+  // we create states for the order information inputs
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [city, setCity] = useState("");
+  const [postalCode, setPostalCode] = useState("");
+  const [streetAddress, setStreetAddress] = useState("");
+  const [country, setCountry] = useState("");
+
   useEffect(() => {
     // we check if the cartProducts state has any products in it and if it does we make a post request to the api
     if (cartProducts.length > 0) {
@@ -63,6 +72,9 @@ export default function CartPage() {
       axios.post("/api/cart", { ids: cartProducts }).then((response) => {
         setProducts(response.data);
       });
+    } else {
+      // when the cartProduct will be empty we will empty the products state
+      setProducts([]);
     }
   }, [cartProducts]);
 
@@ -159,29 +171,41 @@ export default function CartPage() {
               <Input
                 type="text"
                 placeholder="Name"
+                value={name}
+                onChange={(event) => setName(event.target.value)}
               />
               <Input
                 type="text"
                 placeholder="Email"
+                value={email}
+                onChange={(event) => setEmail(event.target.value)}
               />
               <CityHolder>
                 <Input
                   type="text"
                   placeholder="City"
+                  value={city}
+                  onChange={(event) => setCity(event.target.value)}
                 />
                 <Input
                   type="text"
                   placeholder="Postal Code"
+                  value={postalCode}
+                  onChange={(event) => setPostalCode(event.target.value)}
                 />
               </CityHolder>
 
               <Input
                 type="text"
                 placeholder="Street Address"
+                value={streetAddress}
+                onChange={(event) => setStreetAddress(event.target.value)}
               />
               <Input
                 type="text"
                 placeholder="Country"
+                value={country}
+                onChange={(event) => setCountry(event.target.value)}
               />
 
               <Button
