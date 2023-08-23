@@ -2,6 +2,7 @@ import Button from "@/components/Button";
 import { CartContext } from "@/components/CartContex";
 import Center from "@/components/Center";
 import Header from "@/components/Header";
+import Input from "@/components/Input";
 import Table from "@/components/Table";
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
@@ -41,6 +42,11 @@ const Box = styled.div`
 
 const QuantityLabel = styled.span`
   padding: 0 3px;
+`;
+
+const CityHolder = styled.div`
+  display: flex;
+  gap: 5px;
 `;
 
 export default function CartPage() {
@@ -150,13 +156,32 @@ export default function CartPage() {
           {!!cartProducts?.length && (
             <Box>
               <h2>Order Information</h2>
-              <input
+              <Input
                 type="text"
-                placeholder="Address 1"
+                placeholder="Name"
               />
-              <input
+              <Input
                 type="text"
-                placeholder="Address 2"
+                placeholder="Email"
+              />
+              <CityHolder>
+                <Input
+                  type="text"
+                  placeholder="City"
+                />
+                <Input
+                  type="text"
+                  placeholder="Postal Code"
+                />
+              </CityHolder>
+
+              <Input
+                type="text"
+                placeholder="Street Address"
+              />
+              <Input
+                type="text"
+                placeholder="Country"
               />
 
               <Button
