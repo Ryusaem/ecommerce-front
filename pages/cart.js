@@ -98,6 +98,40 @@ export default function CartPage() {
     total += price;
   }
 
+  // this function is called when the user clicks on the continue to payment button. We make a post request to the api and send the order information and the cartProducts state as the body
+  async function goToPayment() {
+    const response = await axios.post("/api/checkout", {
+      name,
+      email,
+      city,
+      postalCode,
+      streetAddress,
+      country,
+      cartProducts,
+    });
+
+    // if the response has a url property, it means that the payment was successful and we redirect the user to the url
+    if (response.data.url) {
+      window.location = response.data.url;
+    }
+  }
+
+  if (window.location.href.includes("success")) {
+    return (
+      <>
+        <Header />
+        <Center>
+          <ColumnWrapper>
+            <Box>
+              <h1>Thanks for your order</h1>
+              <p>We'll email you when you order will be sent</p>
+            </Box>
+          </ColumnWrapper>
+        </Center>
+      </>
+    );
+  }
+
   return (
     <>
       <Header />
@@ -172,12 +206,14 @@ export default function CartPage() {
                 type="text"
                 placeholder="Name"
                 value={name}
+                name="name"
                 onChange={(event) => setName(event.target.value)}
               />
               <Input
                 type="text"
                 placeholder="Email"
                 value={email}
+                name="email"
                 onChange={(event) => setEmail(event.target.value)}
               />
               <CityHolder>
@@ -185,12 +221,14 @@ export default function CartPage() {
                   type="text"
                   placeholder="City"
                   value={city}
+                  name="city"
                   onChange={(event) => setCity(event.target.value)}
                 />
                 <Input
                   type="text"
                   placeholder="Postal Code"
                   value={postalCode}
+                  name="postalCode"
                   onChange={(event) => setPostalCode(event.target.value)}
                 />
               </CityHolder>
@@ -199,18 +237,28 @@ export default function CartPage() {
                 type="text"
                 placeholder="Street Address"
                 value={streetAddress}
+                name="streetAddress"
                 onChange={(event) => setStreetAddress(event.target.value)}
               />
               <Input
                 type="text"
                 placeholder="Country"
                 value={country}
+                name="country"
                 onChange={(event) => setCountry(event.target.value)}
+              />
+
+              {/* we send the cartProducts state as a hidden input to the api */}
+              <input
+                type="hidden"
+                name="products"
+                value={cartProducts.join(",")}
               />
 
               <Button
                 black
                 block
+                onClick={goToPayment}
               >
                 Continue to payment
               </Button>
