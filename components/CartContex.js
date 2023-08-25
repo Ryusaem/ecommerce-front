@@ -43,10 +43,20 @@ export function CartContexProvider({ children }) {
       return prev;
     });
   }
+
+  function clearCart() {
+    setCartProducts([]);
+  }
   return (
     // cartcontext.provider is a component that wraps all the components that need access to the cart
     <CartContext.Provider
-      value={{ cartProducts, setCartProducts, addProduct, removeProduct }}
+      value={{
+        cartProducts,
+        setCartProducts,
+        addProduct,
+        removeProduct,
+        clearCart,
+      }}
     >
       {children}
     </CartContext.Provider>

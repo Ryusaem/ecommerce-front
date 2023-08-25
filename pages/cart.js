@@ -52,7 +52,8 @@ const CityHolder = styled.div`
 
 export default function CartPage() {
   // cartProducts will have only the ids of the products in the cart. We will use this state to make a post request to the api
-  const { cartProducts, addProduct, removeProduct } = useContext(CartContext);
+  const { cartProducts, addProduct, removeProduct, clearCart } =
+    useContext(CartContext);
 
   // products will have the products from the api
   const [products, setProducts] = useState([]);
@@ -65,6 +66,10 @@ export default function CartPage() {
   const [streetAddress, setStreetAddress] = useState("");
   const [country, setCountry] = useState("");
 
+  // isSuccess will be true when the payment is successful
+  const [isSuccess, setIsSuccess] = useState(false);
+
+  // we make a request to the api to get the products in the cart
   useEffect(() => {
     // we check if the cartProducts state has any products in it and if it does we make a post request to the api
     if (cartProducts.length > 0) {
@@ -78,10 +83,23 @@ export default function CartPage() {
     }
   }, [cartProducts]);
 
+  // we check if the url has the word success in it and if it does we set the isSuccess state to true and we clear the cart
+  useEffect(() => {
+    if (typeof window === "undefined") {
+      return;
+    }
+    if (window.location.href.includes("success")) {
+      setIsSuccess(true);
+      clearCart();
+    }
+  }, []);
+
+  // we create functions to add and remove products from the cart
   function moreOfThisProduct(id) {
     addProduct(id);
   }
 
+  // we create functions to add and remove products from the cart
   function lessOfThisProduct(id) {
     removeProduct(id);
   }
@@ -116,7 +134,8 @@ export default function CartPage() {
     }
   }
 
-  if (window.location.href.includes("success")) {
+  // if the payment is successful we display a message to the user
+  if (isSuccess) {
     return (
       <>
         <Header />
@@ -132,6 +151,7 @@ export default function CartPage() {
     );
   }
 
+  // if the payment is not successful we display the cart and the order information
   return (
     <>
       <Header />

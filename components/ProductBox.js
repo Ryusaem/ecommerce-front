@@ -57,7 +57,8 @@ export default function ProductBox({ _id, title, description, price, images }) {
       <WhiteBox href={url}>
         <div>
           <img
-            src={images[0]}
+            // we use ? to make sure that the images array is not empty
+            src={images?.[0]}
             alt=""
           />
         </div>
