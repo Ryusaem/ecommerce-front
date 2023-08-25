@@ -1,26 +1,26 @@
 import Center from "@/components/Center";
 import Header from "@/components/Header";
 import ProductsGrid from "@/components/ProductsGrid";
+import Title from "@/components/Title";
 import { mongooseConnect } from "@/lib/mongoose";
 import { Product } from "@/models/Product";
-import { styled } from "styled-components";
 
-const Title = styled.h1`
-  font-size: 1.5em;
-`;
+// Goal: get all the products from the database and display them in a grid
 
 export default function ProductsPage({ products }) {
   return (
     <>
       <Header />
       <Center>
-        <Title>All Product</Title>
+        <Title>All Products</Title>
         <ProductsGrid products={products} />
       </Center>
     </>
   );
 }
 
+// getServerSideProps goal is to get the product data from the database.
+// Here we get all the products from the database
 export async function getServerSideProps() {
   await mongooseConnect();
   // first param is the query, second param is the fields we want to select, third param is the options.
