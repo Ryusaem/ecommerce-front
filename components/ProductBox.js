@@ -35,15 +35,27 @@ const ProductInfoBox = styled.div`
 `;
 
 const PriceRow = styled.div`
-  display: flex;
+  // for mobile devices we display the price and the button on different rows)
+  display: block;
+  // for desktop devices we change the display to flex so that the price and the button are on the same row
+  @media screen and (min-width: 768px) {
+    display: flex;
+    gap: 5px;
+  }
   align-items: center;
   justify-content: space-between;
   margin-top: 2px;
 `;
 
 const Price = styled.div`
-  font-size: 1.5rem;
-  font-weight: 500;
+  font-size: 1rem;
+  font-weight: 400;
+  text-align: right;
+  // for desktop devices we align the text to the left
+  @media screen and (min-width: 768px) {
+    font-size: 1.2rem;
+    text-align: left;
+  }
 `;
 
 export default function ProductBox({ _id, title, description, price, images }) {
@@ -68,6 +80,7 @@ export default function ProductBox({ _id, title, description, price, images }) {
         <PriceRow>
           <Price>${price}</Price>
           <Button
+            block
             primary
             outline
             onClick={() => addProduct(_id)}

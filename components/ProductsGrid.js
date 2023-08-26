@@ -6,8 +6,13 @@ import ProductBox from "./ProductBox";
 
 const StyledProductsGrid = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  // for mobile devices we have 2 columns
+  grid-template-columns: 1fr 1fr;
   gap: 20px;
+  // for desktop devices we change the grid-template-columns to 4 columns
+  @media screen and (min-width: 768px) {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
 `;
 
 export default function ProductsGrid({ products }) {

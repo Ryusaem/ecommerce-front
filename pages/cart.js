@@ -10,7 +10,12 @@ import styled from "styled-components";
 
 const ColumnWrapper = styled.div`
   display: grid;
-  grid-template-columns: 1.3fr 0.7fr;
+  // for mobile screen we have 1 column
+  grid-template-columns: 1fr;
+  // for desktop screen we have 2 columns
+  @media screen and (min-width: 768px) {
+    grid-template-columns: 1.3fr 0.7fr;
+  }
   gap: 40px;
   margin-top: 40px;
 `;
@@ -20,17 +25,27 @@ const ProductInfoCell = styled.td`
 `;
 
 const ProductImageBox = styled.div`
-  width: 100px;
+  width: 70px;
   height: 100px;
-  padding: 10px;
+  padding: 2px;
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
   img {
-    max-width: 80px;
-    max-height: 80px;
+    max-width: 50px;
+    max-height: 50px;
+  }
+  // for desktop screen we have different styles
+  @media screen and (min-width: 768px) {
+    padding: 10px;
+    width: 100px;
+    height: 100px;
+    img {
+      max-width: 80px;
+      max-height: 80px;
+    }
   }
 `;
 
@@ -41,7 +56,12 @@ const Box = styled.div`
 `;
 
 const QuantityLabel = styled.span`
-  padding: 0 3px;
+  padding: 0 15px;
+  display: block;
+  @media screen and (min-width: 768px) {
+    display: inline-block;
+    padding: 0 10px;
+  }
 `;
 
 // CityHolder is a div that holds the city and postal code inputs (flex)
