@@ -5,8 +5,12 @@ import Header from "@/components/Header";
 import ProductImages from "@/components/ProductImages";
 import Title from "@/components/Title";
 import WhiteBox from "@/components/WhiteBox";
+
+// CartIcon is an SVG icon (the cart icon)
 import CartIcon from "@/components/icons/CartIcon";
 import { mongooseConnect } from "@/lib/mongoose";
+
+// Models are like tables in the database.
 import { Product } from "@/models/Product";
 import { useContext } from "react";
 import { styled } from "styled-components";
@@ -29,7 +33,11 @@ const Price = styled.span`
 `;
 
 export default function ProductPage({ product }) {
+  // we get the addProduct function from the CartContext.
+  // CartContext contains the cart state and the addProduct function.
+  // A context is like session from PHP. It is a global variable that can be accessed from anywhere.
   const { addProduct } = useContext(CartContext);
+
   return (
     <>
       <Header />
@@ -46,6 +54,7 @@ export default function ProductPage({ product }) {
                 <Price>${product.price}</Price>
               </div>
               <div>
+                {/* we call the addProduct function when the button is clicked */}
                 <Button
                   primary
                   onClick={() => addProduct(product._id)}
