@@ -1,13 +1,21 @@
-import { styled } from "styled-components";
+import { CartContext } from "./CartContex";
 import Button from "./Button";
-import CartIcon from "./icons/CartIcon";
+
 import Link from "next/link";
 import { useContext } from "react";
-import { CartContext } from "./CartContex";
+import { styled } from "styled-components";
 
+// GOAL: This component will display a product in a box. It will display the product image, title, price and a button to add the product to the cart. (It is the child of the component ProductsGrid)
+
+// We use it in the components/ProductsGrid.js file to display a grid of products on the home page
+
+// ProductWrapper → WhiteBox → img
+// ProductWrapper → ProductInfoBox → Title → PriceRow → Price + Button
+
+// ProductWrapper is a div that will contain the product
 const ProductWrapper = styled.div``;
 
-// styled components allows us to create a component that is styled
+// WhiteBox is link that will display the product image in a white box. When we click on the box, we will be redirected to the product page.
 const WhiteBox = styled(Link)`
   background-color: #fff;
   padding: 20px;
@@ -30,10 +38,12 @@ const Title = styled(Link)`
   text-decoration: none;
 `;
 
+// ProductInfoBox is a container for  the product title, price and button (it will contain PriceRow component + Button component)
 const ProductInfoBox = styled.div`
   margin-top: 5px;
 `;
 
+// PriceRow is a div that will contain the component Price and the component Button.
 const PriceRow = styled.div`
   // for mobile devices we display the price and the button on different rows)
   display: block;
@@ -47,6 +57,7 @@ const PriceRow = styled.div`
   margin-top: 2px;
 `;
 
+//
 const Price = styled.div`
   font-size: 1rem;
   font-weight: 400;
@@ -58,6 +69,7 @@ const Price = styled.div`
   }
 `;
 
+// we use the _id, title, description, price and images props to display the product
 export default function ProductBox({ _id, title, description, price, images }) {
   // we can use the addProduct function from the cart context to add a product to the cart
   const { addProduct } = useContext(CartContext);

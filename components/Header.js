@@ -1,9 +1,14 @@
-import Link from "next/link";
-import { styled } from "styled-components";
-import Center from "./Center";
-import { useContext, useState } from "react";
 import { CartContext } from "./CartContex";
 import BarsIcon from "./icons/Bars";
+import Center from "./Center";
+
+import { useContext, useState } from "react";
+import Link from "next/link";
+import { styled } from "styled-components";
+
+// GOAL: It will display the header of our website. It will contain the logo and the navigation links.
+
+// We use it in cart.js, index.js (home), [id].js (individual product page) & products.js (products page)
 
 const StyledHeader = styled.header`
   background-color: #222;
@@ -85,14 +90,18 @@ export default function Header() {
   // We use cartProducts to display the number of products in the cart.
   const { cartProducts } = useContext(CartContext);
 
-  // mobileNavActive will be used to display our navigation links on mobile devices.
+  // mobileNavActive will be used to display our navigation links on mobile devices. At first it will be false. When we press the menu button it will be true. When we press the menu button again it will be false.
   const [mobileNavActive, setMobileNavActive] = useState(false);
+
   return (
     <StyledHeader>
       <Center>
         <Wrapper>
           <Logo href="/">Ecommerce</Logo>
           {/* StyledNav will be visible on desktop devices */}
+          {/* It will display our navigation links next to each other. */}
+          {/* On mobile devices it will be hidden. */}
+          {/* it will only be visible when mobileNavActive is true. */}
           <StyledNav mobileNavActive={mobileNavActive}>
             <NavLink href={"/"}>Home</NavLink>
             <NavLink href={"/products"}>All products</NavLink>
@@ -102,6 +111,7 @@ export default function Header() {
           </StyledNav>
           {/* NavButton will be visible only on mobile devices */}
           {/* It will act like an hamburger menu when we press the icon. */}
+          {/* (prev) => !prev mean that we will change the value of mobileNavActive to the opposite of its current value. */}
           <NavButton onClick={() => setMobileNavActive((prev) => !prev)}>
             <BarsIcon />
           </NavButton>

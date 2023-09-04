@@ -1,3 +1,9 @@
+// GOALS: Icon for cart.
+// Icons are from HeroIcons. https://heroicons.com/
+
+// We use it in Featured (display the featured products on the home page).
+// We use it in [id].js (display the product details on the individual product page).
+
 export default function CartIcon({ className = "w-6 h-6" }) {
   return (
     <svg

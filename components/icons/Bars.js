@@ -1,3 +1,8 @@
+// GOAL: Create a Bars icon (hamburger menu)
+// The icons is from Heroicons: https://heroicons.com/
+
+// )we use it in Header (it will be the menu button on mobile devices)
+
 export default function BarsIcon({ className = "w-6 h-6" }) {
   return (
     <svg

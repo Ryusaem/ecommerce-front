@@ -1,5 +1,14 @@
 import styled, { css } from "styled-components";
+// {primary} contain the color hex code
 import { primary } from "@/lib/colors";
+
+// GOAL: Create a reusable button component that can be used throughout the app
+
+// We use it in ButtonLink (create a button that is a link).
+// We use it in Featured (display the featured products on the home page).
+// We use it on ProductBox (display the product details on the home page).
+// We use it in Cart (display the checkout button).
+// We use it in [id].js (display the add to cart button).
 
 export const ButtonStyle = css`
   border: 0;
@@ -78,10 +87,12 @@ export const ButtonStyle = css`
     `}
 `;
 
+// Create a styled component that extends the ButtonStyle. It means that the Button component will have all the styles from ButtonStyle.
 const StyledButton = styled.button`
   ${ButtonStyle}
 `;
 
+// Create a Button component that will take the children and rest of the props. For example, children can be "Click me" and rest of the props can be onClick, type, etc.
 export default function Button({ children, ...rest }) {
   return <StyledButton {...rest}>{children}</StyledButton>;
 }
