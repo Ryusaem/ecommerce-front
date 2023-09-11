@@ -113,7 +113,7 @@ export default function Featured({ product }) {
           {/* This is the featured product and we can use it to display a featured product in the home page */}
           <Column>
             <img
-              src={product.image}
+              src={product.images[0]}
               alt="featured product"
             />
           </Column>
