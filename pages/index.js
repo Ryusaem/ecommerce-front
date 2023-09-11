@@ -31,7 +31,8 @@ export default function HomePage({ featuredProduct, newProducts }) {
 // getServerSideProps function: allows us to fetch data on the server side. It mean that the data will be fetched before the page is rendered. For example if we want to fetch data from the database, we can do it here.
 export async function getServerSideProps() {
   // This is an id of a product that we want to display as the featured product
-  const featuredProductId = "64a8150b88e78ab7c8b3738e";
+
+  const featuredProductId = "64a8150188e78ab7c8b3738c";
 
   await mongooseConnect();
 
