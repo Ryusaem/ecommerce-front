@@ -113,7 +113,7 @@ export default function Featured({ product }) {
           {/* This is the featured product and we can use it to display a featured product in the home page */}
           <Column>
             <img
-              src="https://ryusaem-next-ecommerce.s3.amazonaws.com/1689971782705.jpg"
+              src={product.image}
               alt="featured product"
             />
           </Column>
