@@ -30,14 +30,14 @@ export function CartContexProvider({ children }) {
     if (cartProducts?.length > 0) {
       ls?.setItem("cart", JSON.stringify(cartProducts));
     }
-  }, [cartProducts]);
+  }, [cartProducts, ls]);
 
   // we check if the local storage has a cart and if it does we set the cartProducts state to the local storage cart
   useEffect(() => {
     if (ls && ls.getItem("cart")) {
       setCartProducts(JSON.parse(ls.getItem("cart")));
     }
-  }, []);
+  }, [ls]);
 
   // we can use this function to add a product to the cart
   function addProduct(productId) {
