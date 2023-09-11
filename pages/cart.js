@@ -229,7 +229,7 @@ export default function CartPage() {
                     </tr>
                   ))}
                   <tr>
-                    <td>Total:</td>
+                    <td></td>
                     <td></td>
                     <td style="color: blue">${total}</td>
                   </tr>
