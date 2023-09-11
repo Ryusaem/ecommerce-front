@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { styled } from "styled-components";
 import Center from "./Center";
 import Button from "./Button";
@@ -111,7 +112,10 @@ export default function Featured({ product }) {
 
           {/* This is the featured product and we can use it to display a featured product in the home page */}
           <Column>
-            <img src="https://ryusaem-next-ecommerce.s3.amazonaws.com/1689971782705.jpg" />
+            <Image
+              src="https://ryusaem-next-ecommerce.s3.amazonaws.com/1689971782705.jpg"
+              alt="featured product"
+            />
           </Column>
         </ColumnWrapper>
       </Center>
