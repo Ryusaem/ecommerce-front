@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Button from "@/components/Button";
 import { CartContext } from "@/components/CartContex";
 import Center from "@/components/Center";
@@ -112,7 +113,7 @@ export default function CartPage() {
       setIsSuccess(true);
       clearCart();
     }
-  }, []);
+  }, [clearCart]);
 
   // we create functions to add and remove products from the cart
   function moreOfThisProduct(id) {
@@ -163,7 +164,7 @@ export default function CartPage() {
           <ColumnWrapper>
             <Box>
               <h1>Thanks for your order</h1>
-              <p>We'll email you when you order will be sent</p>
+              <p>We&apos;ll email you when your order will be sent</p>
             </Box>
           </ColumnWrapper>
         </Center>
@@ -195,10 +196,10 @@ export default function CartPage() {
 
                 <tbody>
                   {products.map((product) => (
-                    <tr>
+                    <tr key={product._id}>
                       <ProductInfoCell>
                         <ProductImageBox>
-                          <img
+                          <Image
                             src={product.images[0]}
                             alt=""
                           />
