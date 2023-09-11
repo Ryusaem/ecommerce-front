@@ -1,4 +1,4 @@
-import Image from "next/image";
+// import Image from "next/image";
 import { CartContext } from "./CartContex";
 import Button from "./Button";
 

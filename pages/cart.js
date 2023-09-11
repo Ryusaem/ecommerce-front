@@ -1,4 +1,4 @@
-import Image from "next/image";
+// import Image from "next/image";
 import Button from "@/components/Button";
 import { CartContext } from "@/components/CartContex";
 import Center from "@/components/Center";
@@ -199,7 +199,7 @@ export default function CartPage() {
                     <tr key={product._id}>
                       <ProductInfoCell>
                         <ProductImageBox>
-                          <Image
+                          <img
                             src={product.images[0]}
                             alt=""
                           />
