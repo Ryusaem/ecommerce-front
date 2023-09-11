@@ -85,6 +85,8 @@ export default function ProductBox({ _id, title, description, price, images }) {
             // we use ? to make sure that the images array is not empty
             src={images?.[0]}
             alt=""
+            width={80}
+            height={80}
           />
         </div>
       </WhiteBox>
