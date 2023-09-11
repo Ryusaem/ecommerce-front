@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { CartContext } from "./CartContex";
 import Button from "./Button";
 
@@ -80,7 +81,7 @@ export default function ProductBox({ _id, title, description, price, images }) {
     <ProductWrapper>
       <WhiteBox href={url}>
         <div>
-          <img
+          <Image
             // we use ? to make sure that the images array is not empty
             src={images?.[0]}
             alt=""
